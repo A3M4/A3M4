@@ -302,7 +302,37 @@
       
         
           
-            <p>Regular expression is one of the must master skills for web crawler</p>
+            <blockquote>
+<p>Regular expression is one of the basic skills for web crawler   </p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pattern = re.compile(<span class="string">r'abc'</span>) <span class="comment">#change string into object, speed up </span></span><br><span class="line">matches = pattern.finditer(text_to_search)</span><br><span class="line"><span class="keyword">for</span> match <span class="keyword">in</span> matches:</span><br><span class="line">    print(match)  <span class="comment">#shows each match and its span</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>MetaCharacters that need to be escaped(add \ ):</p>
+<p>. ^ $ * + ? [ ] { } \ | ( )</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!---</span><br><span class="line">.       - Any Character Except New Line</span><br><span class="line">\d      - Digit (0-9)</span><br><span class="line">\D      - Not a Digit (0-9)</span><br><span class="line">\w      - Word Character (a-z, A-Z, 0-9, _)</span><br><span class="line">\W      - Not a Word Character</span><br><span class="line">\s      - Whitespace (space, tab, newline)</span><br><span class="line">\S      - Not Whitespace (space, tab, newline)</span><br><span class="line"></span><br><span class="line">\b      - Word Boundary</span><br><span class="line">\B      - Not a Word Boundary</span><br><span class="line">^       - Beginning of a String</span><br><span class="line">$       - End of a String</span><br><span class="line"></span><br><span class="line">[]      - Matches Characters in brackets</span><br><span class="line">[^ ]    - Matches Characters NOT in brackets</span><br><span class="line">|       - Either Or</span><br><span class="line">( )     - Group</span><br><span class="line"></span><br><span class="line">Quantifiers:</span><br><span class="line">*       - 0 or More</span><br><span class="line">+       - 1 or More</span><br><span class="line">?       - 0 or One</span><br><span class="line">&#123;3&#125;     - Exact Number</span><br><span class="line">&#123;3,4&#125;   - Range of Numbers (Minimum, Maximum)</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The code block below shows how word boundary works:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">text_to_search = <span class="string">'ha haha'</span></span><br><span class="line">pattern = re.compile(<span class="string">r'\bha'</span>)</span><br><span class="line">matches = pattern.finditer(text_to_search)</span><br><span class="line"><span class="keyword">for</span> match <span class="keyword">in</span> matches:</span><br><span class="line">    print(match)  <span class="comment">#this will only give you two ha</span></span><br></pre></td></tr></table></figure>
+
+<p>Some examples:</p>
+<blockquote>
+<p>\d\d\d           three digits in a row</p>
+<p>[-.]                 matches a dash or a dot</p>
+<p>[A-Za-z0-9]   still only match one character</p>
+<p>[^A-Z]            ^inside [] negates the set and matches everything that is not in the set</p>
+<p>\d{3}             matches three digits</p>
+<p>M(r|s|rs)     matches Mr, Ms and Mrs      </p>
+<p>(www.)?        the entire group is optional </p>
+<p>(www.)?(\w+)(\.\w+)      print(match.group(0)) shows the same as print(match), group(1)                                                shows the first group</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">urls = <span class="string">'''</span></span><br><span class="line"><span class="string">https://www.google.com</span></span><br><span class="line"><span class="string">http://coreyms.com</span></span><br><span class="line"><span class="string">https://youtube.com</span></span><br><span class="line"><span class="string">https://www.nasa.gov</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">pattern = re.compile(<span class="string">r'https?://(www\.)?(\w+)(\.\w+)'</span>)</span><br><span class="line"></span><br><span class="line">subbed_urls = pattern.sub(<span class="string">r'\2\3'</span>, urls) </span><br><span class="line"><span class="comment">#everytime it finds a match, the match will be subsituded by 2nd and 3rd group</span></span><br><span class="line"></span><br><span class="line">print(subbed_urls)</span><br><span class="line"></span><br><span class="line">google.com</span><br><span class="line">coreyms.com</span><br><span class="line">youtube.com</span><br><span class="line">nasa.gov</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Add a flag to ignore case:   </p>
+<p>re.compile(r’s’, re.I)</p>
+</blockquote>
 
           
         
