@@ -95,15 +95,15 @@
 <meta property="og:image" content="https://i.ibb.co/6bksvP3/2019-11-03-225027.png">
 <meta property="og:image" content="https://i.ibb.co/Rg5chvc/2019-11-03-230227.png">
 <meta property="og:image" content="https://i.ibb.co/9smGWP2/basicinfo-glass.jpg">
-<meta property="og:image" content="https://i.ibb.co/KW15P23/SALARY-YEAR.png">
-<meta property="og:image" content="https://i.ibb.co/SV0dh9d/size.png">
 <meta property="og:image" content="https://i.ibb.co/yk5vZHJ/Download-Image.png">
 <meta property="og:image" content="https://i.ibb.co/JQwhyyF/Dashboard-1-7.png">
 <meta property="og:image" content="https://i.ibb.co/xS7PJ30/Dashboard-1-5.png">
-<meta property="og:image" content="https://i.ibb.co/rdLnFpr/Dashboard-1-4.png">
-<meta property="og:image" content="https://i.ibb.co/pKv5FzT/Dashboard-1-3.png">
+<meta property="og:image" content="https://i.ibb.co/SV0dh9d/size.png">
 <meta property="og:image" content="https://i.ibb.co/dbYzH2r/Dashboard-1-10.png">
-<meta property="og:updated_time" content="2019-11-05T23:18:51.532Z">
+<meta property="og:image" content="https://i.ibb.co/KW15P23/SALARY-YEAR.png">
+<meta property="og:image" content="https://i.ibb.co/pKv5FzT/Dashboard-1-3.png">
+<meta property="og:image" content="https://i.ibb.co/rdLnFpr/Dashboard-1-4.png">
+<meta property="og:updated_time" content="2019-11-06T05:31:09.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scraping Job Information using Scrapy and Visualizing its Data">
 <meta name="twitter:description" content="OverviewI intended to scrape only monster.com, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all,">
@@ -370,35 +370,36 @@
 <p><br><br></p>
 <h1 id="Anti-scraping-Techniques"><a href="#Anti-scraping-Techniques" class="headerlink" title="Anti-scraping Techniques"></a>Anti-scraping Techniques</h1><p>Monster.com do not need CAPTCHA to have access to any data, so the spider only uses three anti-scraping methods, which are varying scraping speed, random User-Agent provided by scrapy<em>-</em>fake<em>-</em>useragent(<a href="https://github.com/hyan15/scrapy-proxy-pool" target="_blank" rel="noopener">https://github.com/hyan15/scrapy-proxy-pool</a>) and rotating IP provided by scrapy-proxy-pool(<a href="https://pypi.org/project/scrapy-fake-useragent/" target="_blank" rel="noopener">https://pypi.org/project/scrapy-fake-useragent/</a>). There are detailed information on the links for the last two libraries.</p>
 <p><br><br></p>
-<h1 id="Glassdoor-Spider"><a href="#Glassdoor-Spider" class="headerlink" title="Glassdoor Spider"></a>Glassdoor Spider</h1><p>Since the site structure of glassdoor is somewhat different with monster, I built another spider based on <strong>Scrapy</strong> and <strong>Urllib</strong>,  </p>
-<p>see full code on XXXXXX</p>
-<p>The spider is connected with <strong>MySQL Workbench</strong>, its table for data analyst is shown below and the salary range that employer listed is separated into two columns: salarylow and salryhigh. Besides, the meaning of size and year are “number of employees” and “company founded year”.</p>
+<h1 id="Glassdoor-Spider"><a href="#Glassdoor-Spider" class="headerlink" title="Glassdoor Spider"></a>Glassdoor Spider</h1><p>Since the site structure of glassdoor is somewhat different with monster, I built another spider based on <strong>Scrapy</strong> and <strong>Urllib</strong>. See full code on <a href="https://github.com/A3M4/Glassdoor.com-Job-Info-Web-Crawler-by-Scrapy" target="_blank" rel="noopener">https://github.com/A3M4/Glassdoor.com-Job-Info-Web-Crawler-by-Scrapy</a> The spider is connected with <strong>MySQL Workbench</strong>, its table for data analyst is shown below and the salary range that employer listed is separated into two columns: salarylow and salryhigh. Besides, the meaning of size and year are “number of employees” and “company founded year”.</p>
 <img src="https://i.ibb.co/Rg5chvc/2019-11-03-230227.png" alt="avatar" style="zoom: 200%;">
 
 <p><br><br></p>
-<h1 id="Data-Visualization"><a href="#Data-Visualization" class="headerlink" title="Data Visualization"></a>Data Visualization</h1><img src="https://i.ibb.co/9smGWP2/basicinfo-glass.jpg" alt="avatar" style="zoom: 100%;">
+<h1 id="Data-Visualization"><a href="#Data-Visualization" class="headerlink" title="Data Visualization"></a>Data Visualization</h1><p>The visualizations  were created by using Tableau and Matplotlib, Tableau is a fantastic software for making nice presentation and basic analysis, but for heavy lifting, visualizing libraries in R or Python are definitely my first choice. The following image provides basic info(average base salary, star rating by employees and company founded year) for these three positions.</p>
+<img src="https://i.ibb.co/9smGWP2/basicinfo-glass.jpg" alt="avatar" style="zoom: 100%;">
 
+<p><br><br></p>
+<h2 id="Ranking-of-Most-Mentioned-skills-for-Data-Analyst"><a href="#Ranking-of-Most-Mentioned-skills-for-Data-Analyst" class="headerlink" title="Ranking of Most Mentioned skills for Data Analyst"></a>Ranking of Most Mentioned skills for Data Analyst</h2><img src="https://i.ibb.co/yk5vZHJ/Download-Image.png" alt="avatar" style="zoom: 100%;">
 
+<p><br><br></p>
+<h2 id="Most-Occurring-Adjectives-in-Job-Description"><a href="#Most-Occurring-Adjectives-in-Job-Description" class="headerlink" title="Most Occurring Adjectives in Job Description"></a>Most Occurring Adjectives in Job Description</h2><img src="https://i.ibb.co/JQwhyyF/Dashboard-1-7.png" alt="avatar" style="zoom: 100%;">
 
+<p><br><br></p>
+<h2 id="Educational-Requirements-to-Land-a-Job"><a href="#Educational-Requirements-to-Land-a-Job" class="headerlink" title="Educational Requirements to Land a Job"></a>Educational Requirements to Land a Job</h2><img src="https://i.ibb.co/xS7PJ30/Dashboard-1-5.png" alt="avatar" style="zoom: 100%;">
 
+<p><br><br></p>
+<h2 id="What-is-the-Size-of-Tech-Companies"><a href="#What-is-the-Size-of-Tech-Companies" class="headerlink" title="What is the Size of Tech Companies?"></a>What is the Size of Tech Companies?</h2><img src="https://i.ibb.co/SV0dh9d/size.png" alt="avatar" style="zoom: 100%;">
 
-<img src="https://i.ibb.co/KW15P23/SALARY-YEAR.png" alt="avatar" style="zoom: 100%;">
+<p><br><br></p>
+<h2 id="Which-City-has-the-Most-Opportunities-for-Data-Analyst"><a href="#Which-City-has-the-Most-Opportunities-for-Data-Analyst" class="headerlink" title="Which City has the Most Opportunities for Data Analyst?"></a>Which City has the Most Opportunities for Data Analyst?</h2><img src="https://i.ibb.co/dbYzH2r/Dashboard-1-10.png" alt="avatar" style="zoom: 200%;">
 
+<p><br><br></p>
+<h2 id="The-Relationship-between-Salary-and-Age-of-Firm"><a href="#The-Relationship-between-Salary-and-Age-of-Firm" class="headerlink" title="The Relationship between Salary and Age of Firm"></a>The Relationship between Salary and Age of Firm</h2><img src="https://i.ibb.co/KW15P23/SALARY-YEAR.png" alt="avatar" style="zoom: 100%;">
 
+<p><br><br></p>
+<h2 id="Annual-Average-Salary-in-Each-State"><a href="#Annual-Average-Salary-in-Each-State" class="headerlink" title="Annual Average Salary in Each State"></a>Annual Average Salary in Each State</h2><img src="https://i.ibb.co/pKv5FzT/Dashboard-1-3.png" alt="avatar" style="zoom: 100%;">
 
-<img src="https://i.ibb.co/SV0dh9d/size.png" alt="avatar" style="zoom: 100%;">
-
-<h3 id><a href="#" class="headerlink" title></a><img src="https://i.ibb.co/yk5vZHJ/Download-Image.png" alt="avatar" style="zoom: 100%;"></h3><img src="https://i.ibb.co/JQwhyyF/Dashboard-1-7.png" alt="avatar" style="zoom: 100%;">
-
-<img src="https://i.ibb.co/xS7PJ30/Dashboard-1-5.png" alt="avatar" style="zoom: 100%;">
-
-<img src="https://i.ibb.co/rdLnFpr/Dashboard-1-4.png" alt="avatar" style="zoom: 100%;">
-
-<img src="https://i.ibb.co/pKv5FzT/Dashboard-1-3.png" alt="avatar" style="zoom: 100%;">
-
-<img src="https://i.ibb.co/dbYzH2r/Dashboard-1-10.png" alt="avatar" style="zoom: 200%;">
-
-
+<p><br><br></p>
+<h2 id="Numbers-of-Years-of-Experience-Required-by-Employers"><a href="#Numbers-of-Years-of-Experience-Required-by-Employers" class="headerlink" title="Numbers of Years of Experience Required by Employers"></a>Numbers of Years of Experience Required by Employers</h2><img src="https://i.ibb.co/rdLnFpr/Dashboard-1-4.png" alt="avatar" style="zoom: 100%;">
       
     </div>
     
@@ -544,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Assigning-Attributes-to-the-Spider"><span class="nav-number">2.</span> <span class="nav-text">Assigning Attributes to the Spider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse"><span class="nav-number">3.</span> <span class="nav-text">Parse()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse-detail"><span class="nav-number">4.</span> <span class="nav-text">Parse_detail()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Storing-data-in-SQLite3-Database"><span class="nav-number">5.</span> <span class="nav-text">Storing data in SQLite3 Database</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anti-scraping-Techniques"><span class="nav-number">6.</span> <span class="nav-text">Anti-scraping Techniques</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Glassdoor-Spider"><span class="nav-number">7.</span> <span class="nav-text">Glassdoor Spider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Visualization"><span class="nav-number">8.</span> <span class="nav-text">Data Visualization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">8.0.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Assigning-Attributes-to-the-Spider"><span class="nav-number">2.</span> <span class="nav-text">Assigning Attributes to the Spider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse"><span class="nav-number">3.</span> <span class="nav-text">Parse()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse-detail"><span class="nav-number">4.</span> <span class="nav-text">Parse_detail()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Storing-data-in-SQLite3-Database"><span class="nav-number">5.</span> <span class="nav-text">Storing data in SQLite3 Database</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anti-scraping-Techniques"><span class="nav-number">6.</span> <span class="nav-text">Anti-scraping Techniques</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Glassdoor-Spider"><span class="nav-number">7.</span> <span class="nav-text">Glassdoor Spider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Visualization"><span class="nav-number">8.</span> <span class="nav-text">Data Visualization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ranking-of-Most-Mentioned-skills-for-Data-Analyst"><span class="nav-number">8.1.</span> <span class="nav-text">Ranking of Most Mentioned skills for Data Analyst</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Most-Occurring-Adjectives-in-Job-Description"><span class="nav-number">8.2.</span> <span class="nav-text">Most Occurring Adjectives in Job Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Educational-Requirements-to-Land-a-Job"><span class="nav-number">8.3.</span> <span class="nav-text">Educational Requirements to Land a Job</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-the-Size-of-Tech-Companies"><span class="nav-number">8.4.</span> <span class="nav-text">What is the Size of Tech Companies?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Which-City-has-the-Most-Opportunities-for-Data-Analyst"><span class="nav-number">8.5.</span> <span class="nav-text">Which City has the Most Opportunities for Data Analyst?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Relationship-between-Salary-and-Age-of-Firm"><span class="nav-number">8.6.</span> <span class="nav-text">The Relationship between Salary and Age of Firm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Annual-Average-Salary-in-Each-State"><span class="nav-number">8.7.</span> <span class="nav-text">Annual Average Salary in Each State</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numbers-of-Years-of-Experience-Required-by-Employers"><span class="nav-number">8.8.</span> <span class="nav-text">Numbers of Years of Experience Required by Employers</span></a></li></ol></li></ol></div>
             
 
           </div>
