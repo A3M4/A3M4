@@ -84,8 +84,8 @@
 <meta name="description" content="OverviewI intended to scrape only monster.com, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scraping Job Information using Scrapy and Visualizing its Data">
-<meta property="og:url" content="http://yoursite.com/2019/10/30/scrapy-job/index.html">
-<meta property="og:site_name" content="Trust the Process">
+<meta property="og:url" content="http://yoursite.com/2019/10/30/README/index.html">
+<meta property="og:site_name" content="Yifeng&#39;s Notebook">
 <meta property="og:description" content="OverviewI intended to scrape only monster.com, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all,">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.ibb.co/Cw8wqCX/web-scrapy-1.png">
@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://i.ibb.co/KW15P23/SALARY-YEAR.png">
 <meta property="og:image" content="https://i.ibb.co/pKv5FzT/Dashboard-1-3.png">
 <meta property="og:image" content="https://i.ibb.co/rdLnFpr/Dashboard-1-4.png">
-<meta property="og:updated_time" content="2019-11-06T05:34:24.180Z">
+<meta property="og:updated_time" content="2019-11-06T23:08:53.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scraping Job Information using Scrapy and Visualizing its Data">
 <meta name="twitter:description" content="OverviewI intended to scrape only monster.com, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all,">
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/30/scrapy-job/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/30/README/">
 
 
 
 
 
-  <title>Scraping Job Information using Scrapy and Visualizing its Data | Trust the Process</title>
+  <title>Scraping Job Information using Scrapy and Visualizing its Data | Yifeng's Notebook</title>
   
 
 
@@ -173,7 +173,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Trust the Process</span>
+        <span class="site-title">Yifeng's Notebook</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -250,7 +250,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/scrapy-job/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/README/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yifeng Li">
@@ -259,7 +259,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Trust the Process">
+      <meta itemprop="name" content="Yifeng's Notebook">
     </span>
 
     
@@ -323,14 +323,14 @@
 
       
         <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>I intended to scrape only <strong><em>monster.com</em></strong>, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all, so I chose <strong><em>glassdoor.com</em></strong> as my second target website. In this project, I mainly focused on three jobs(Data Analyst, Web Developer and Mobile APP Developer) in monster website.</p>
-<p>The diagram below shows the workflow of collecting structured raw data from web page, selecting some of that data, parsing/visualizing data. </p>
+<p>The diagram below shows the workflow of collecting structured raw data from web pages, selecting some of that data, parsing/visualizing data. </p>
 <img src="https://i.ibb.co/Cw8wqCX/web-scrapy-1.png" alt="avatar" style="zoom: 200%;">
 
 <p><br><br></p>
 <h1 id="Assigning-Attributes-to-the-Spider"><a href="#Assigning-Attributes-to-the-Spider" class="headerlink" title="Assigning Attributes to the Spider"></a>Assigning Attributes to the Spider</h1><p>After setting up the environment and creating a scrapy project, codes in the <strong>monster_spider.py</strong> file are as follows:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MonsterSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'monster-spider'</span></span><br><span class="line">    allowed_domains = [<span class="string">'monster.com'</span>]</span><br><span class="line">    start_urls = [<span class="string">'https://www.monster.com/jobs/search/pagination/?q='</span>+jobtitle+</span><br><span class="line">                  <span class="string">'&amp;where=usa&amp;isDynamicPage=true&amp;isMKPagination=true&amp;page=&#123;&#125;'</span>.format(i+<span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(int(pages))]</span><br><span class="line">    postingid = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
-<p>Usually <strong>start_urls</strong> class attribute is defined as the homepage of the website where the spider will begin to crawl(e.g. <a href="https://www.monster.com/jobs/search/?q=Data-Analyst" target="_blank" rel="noopener">https://www.monster.com/jobs/search/?q=Data-Analyst</a>) and then be used by the default implementation of <strong>start_requests()</strong> to generate initial requests. Yet a URL looking like server-side web API was found when browsing through webpages by using Chrome DevTools.</p>
+<p>Usually  <strong>start_urls</strong> class attribute is defined as the homepage of the website where the spider will begin to crawl(e.g. <a href="https://www.monster.com/jobs/search/?q=Data-Analyst" target="_blank" rel="noopener">https://www.monster.com/jobs/search/?q=Data-Analyst</a>) and then be used by the default implementation of <strong>start_requests()</strong> to generate initial requests. Yet a URL looking like server-side web API was found when browsing through web pages by using Chrome DevTools.</p>
 <img src="https://i.ibb.co/xq586M9/2019-11-03-140231.png" alt="avatar" style="zoom: 200%;">
 
 <p>It returns information in well-structured JSON format, each page contains 25-30 job positions and one of them is shown in the diagram below(edited by JSON Beautifier), which is clearer to parse than using XPath or Css selector to locate web elements. </p>
