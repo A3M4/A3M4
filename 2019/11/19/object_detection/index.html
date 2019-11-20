@@ -81,15 +81,14 @@
 
 
 
-<meta name="description" content="I intended to scrape only monster.com, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all, so I ch">
+<meta name="description" content="OverviewI intended to scrape only monster.com, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scraping Job Information using Scrapy and Visualizing its Data">
-<meta property="og:url" content="http://yoursite.com/2019/10/30/README/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/11/19/object_detection/index.html">
 <meta property="og:site_name" content="Yifeng&#39;s Notebook">
-<meta property="og:description" content="I intended to scrape only monster.com, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all, so I ch">
+<meta property="og:description" content="OverviewI intended to scrape only monster.com, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all,">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.ibb.co/Cw8wqCX/web-scrapy-1.png">
-<meta property="og:image" content="https://docs.scrapy.org/en/latest/_images/scrapy_architecture_02.png">
 <meta property="og:image" content="https://i.ibb.co/xq586M9/2019-11-03-140231.png">
 <meta property="og:image" content="https://i.ibb.co/jRf7VFL/2019-11-03-144730.png">
 <meta property="og:image" content="https://i.ibb.co/r5g6Th9/2019-11-03-160853.png">
@@ -104,10 +103,10 @@
 <meta property="og:image" content="https://i.ibb.co/KW15P23/SALARY-YEAR.png">
 <meta property="og:image" content="https://i.ibb.co/pKv5FzT/Dashboard-1-3.png">
 <meta property="og:image" content="https://i.ibb.co/rdLnFpr/Dashboard-1-4.png">
-<meta property="og:updated_time" content="2019-11-20T04:46:24.412Z">
+<meta property="og:updated_time" content="2019-11-20T02:59:04.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scraping Job Information using Scrapy and Visualizing its Data">
-<meta name="twitter:description" content="I intended to scrape only monster.com, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all, so I ch">
+<meta name="twitter:description" content="OverviewI intended to scrape only monster.com, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all,">
 <meta name="twitter:image" content="https://i.ibb.co/Cw8wqCX/web-scrapy-1.png">
 
 
@@ -138,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/30/README/">
+  <link rel="canonical" href="http://yoursite.com/2019/11/19/object_detection/">
 
 
 
@@ -251,7 +250,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/README/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19/object_detection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yifeng Li">
@@ -280,8 +279,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-30T23:20:44-04:00">
-                2019-10-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-19T21:59:36-05:00">
+                2019-11-19
               </time>
             
 
@@ -323,14 +322,11 @@
       
 
       
-        <p>I intended to scrape only <strong><em>monster.com</em></strong>, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all, so I chose <strong><em>glassdoor.com</em></strong> as my second target website. </p>
-<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>In this project, I mainly focused on three jobs(Data Analyst, Web Developer and Mobile APP Developer) in monster website(see full code on <a href="https://github.com/A3M4/Web-Scraping-Job-Info-on-Monster.com-by-Scrapy" target="_blank" rel="noopener">https://github.com/A3M4/Web-Scraping-Job-Info-on-Monster.com-by-Scrapy</a>). The diagram below shows the workflow of collecting structured raw data from web pages, selecting some of that data, parsing/visualizing data. </p>
+        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>I intended to scrape only <strong><em>monster.com</em></strong>, which is one of the best job search websites, but changed my mind when I found out most of posted jobs does not contain salary info. It’s not fun at all, so I chose <strong><em>glassdoor.com</em></strong> as my second target website. In this project, I mainly focused on three jobs(Data Analyst, Web Developer and Mobile APP Developer) in monster website(see full code on <a href="https://github.com/A3M4/Web-Scraping-Job-Info-on-Monster.com-by-Scrapy" target="_blank" rel="noopener">https://github.com/A3M4/Web-Scraping-Job-Info-on-Monster.com-by-Scrapy</a>). </p>
+<p>The diagram below shows the workflow of collecting structured raw data from web pages, selecting some of that data, parsing/visualizing data. </p>
 <img src="https://i.ibb.co/Cw8wqCX/web-scrapy-1.png" alt="avatar" style="zoom: 200%;">
 
 <p><br><br></p>
-<h1 id="Data-Flow-in-Scrapy"><a href="#Data-Flow-in-Scrapy" class="headerlink" title="Data Flow in Scrapy"></a>Data Flow in Scrapy</h1><p>The diagram below, which is credit to <a href="https://docs.scrapy.org" target="_blank" rel="noopener">https://docs.scrapy.org</a>, shows the steps of data transfer. Firstly, a line of command(scrapy crawl monster-spider) is given by user in Terminal of spider’s directory and sent to <strong>ENGINE</strong>, then <strong>ENGINE</strong> will schedule the Requests in <strong>SCHEDULER</strong>. Requests will be arranged and fed into <strong>ENGINE</strong> and <strong>DOWNLOADER</strong> acquires the requests through downloader <strong>MIDDLEWARE</strong>(add functionality to the downloader system, e.g. proxies, user-agent headers, etc.). Once downloading finishes, pages and responses will be sent back to <strong>ENGINE</strong> and then to <strong>SPIDERS</strong> via spiders <strong>MIDDLEWARE</strong>(filtering out responses with bad HTTP status codes). <strong>SPIDERS</strong> will process responses and return scraped items and new requests to <strong>ENGINE</strong>, then processed items will be sent to <strong>ITEM PIPELINES</strong>, where the scraped items in this project are saved into a database. Finally, <strong>SCHEDULER</strong> gets processed requests and asks new requests from <strong>ENGINE</strong>.</p>
-<img src="https://docs.scrapy.org/en/latest/_images/scrapy_architecture_02.png" alt="avatar" style="zoom: 200%;">
-
 <h1 id="Assigning-Attributes-to-the-Spider"><a href="#Assigning-Attributes-to-the-Spider" class="headerlink" title="Assigning Attributes to the Spider"></a>Assigning Attributes to the Spider</h1><p>After setting up the environment and creating a Scrapy project, codes in the <strong>monster_spider.py</strong> file are as follows:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MonsterSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'monster-spider'</span></span><br><span class="line">    allowed_domains = [<span class="string">'monster.com'</span>]</span><br><span class="line">    start_urls = [<span class="string">'https://www.monster.com/jobs/search/pagination/?q='</span>+jobtitle+</span><br><span class="line">                  <span class="string">'&amp;where=usa&amp;isDynamicPage=true&amp;isMKPagination=true&amp;page=&#123;&#125;'</span>.format(i+<span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(int(pages))]</span><br><span class="line">    postingid = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
@@ -427,8 +423,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/02/Regular-Expression-Notes/" rel="next" title="Regular Expression Notes">
-                <i class="fa fa-chevron-left"></i> Regular Expression Notes
+              <a href="/2019/10/30/README/" rel="next" title="Scraping Job Information using Scrapy and Visualizing its Data">
+                <i class="fa fa-chevron-left"></i> Scraping Job Information using Scrapy and Visualizing its Data
               </a>
             
           </div>
@@ -436,10 +432,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/19/object_detection/" rel="prev" title="Scraping Job Information using Scrapy and Visualizing its Data">
-                Scraping Job Information using Scrapy and Visualizing its Data <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -553,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Flow-in-Scrapy"><span class="nav-number">2.</span> <span class="nav-text">Data Flow in Scrapy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Assigning-Attributes-to-the-Spider"><span class="nav-number">3.</span> <span class="nav-text">Assigning Attributes to the Spider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse"><span class="nav-number">4.</span> <span class="nav-text">Parse()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse-detail"><span class="nav-number">5.</span> <span class="nav-text">Parse_detail()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Storing-data-in-SQLite3-Database"><span class="nav-number">6.</span> <span class="nav-text">Storing data in SQLite3 Database</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anti-scraping-Techniques"><span class="nav-number">7.</span> <span class="nav-text">Anti-scraping Techniques</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Glassdoor-Spider"><span class="nav-number">8.</span> <span class="nav-text">Glassdoor Spider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Visualization"><span class="nav-number">9.</span> <span class="nav-text">Data Visualization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ranking-of-Most-Mentioned-skills-for-Data-Analyst"><span class="nav-number">9.1.</span> <span class="nav-text">Ranking of Most Mentioned skills for Data Analyst</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Most-Occurring-Adjectives-in-Job-Description"><span class="nav-number">9.2.</span> <span class="nav-text">Most Occurring Adjectives in Job Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Educational-Requirements-to-Land-a-Job"><span class="nav-number">9.3.</span> <span class="nav-text">Educational Requirements to Land a Job</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-the-Sizes-of-Tech-Companies"><span class="nav-number">9.4.</span> <span class="nav-text">What are the Sizes of Tech Companies?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Which-City-has-the-Most-Opportunities-for-Data-Analyst"><span class="nav-number">9.5.</span> <span class="nav-text">Which City has the Most Opportunities for Data Analyst?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Relationship-between-Salary-and-Age-of-Firm"><span class="nav-number">9.6.</span> <span class="nav-text">The Relationship between Salary and Age of Firm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Annual-Average-Salary-in-Each-State"><span class="nav-number">9.7.</span> <span class="nav-text">Annual Average Salary in Each State</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numbers-of-Years-of-Experience-Required-by-Employers"><span class="nav-number">9.8.</span> <span class="nav-text">Numbers of Years of Experience Required by Employers</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Assigning-Attributes-to-the-Spider"><span class="nav-number">2.</span> <span class="nav-text">Assigning Attributes to the Spider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse"><span class="nav-number">3.</span> <span class="nav-text">Parse()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse-detail"><span class="nav-number">4.</span> <span class="nav-text">Parse_detail()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Storing-data-in-SQLite3-Database"><span class="nav-number">5.</span> <span class="nav-text">Storing data in SQLite3 Database</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anti-scraping-Techniques"><span class="nav-number">6.</span> <span class="nav-text">Anti-scraping Techniques</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Glassdoor-Spider"><span class="nav-number">7.</span> <span class="nav-text">Glassdoor Spider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Visualization"><span class="nav-number">8.</span> <span class="nav-text">Data Visualization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ranking-of-Most-Mentioned-skills-for-Data-Analyst"><span class="nav-number">8.1.</span> <span class="nav-text">Ranking of Most Mentioned skills for Data Analyst</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Most-Occurring-Adjectives-in-Job-Description"><span class="nav-number">8.2.</span> <span class="nav-text">Most Occurring Adjectives in Job Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Educational-Requirements-to-Land-a-Job"><span class="nav-number">8.3.</span> <span class="nav-text">Educational Requirements to Land a Job</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-the-Sizes-of-Tech-Companies"><span class="nav-number">8.4.</span> <span class="nav-text">What are the Sizes of Tech Companies?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Which-City-has-the-Most-Opportunities-for-Data-Analyst"><span class="nav-number">8.5.</span> <span class="nav-text">Which City has the Most Opportunities for Data Analyst?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Relationship-between-Salary-and-Age-of-Firm"><span class="nav-number">8.6.</span> <span class="nav-text">The Relationship between Salary and Age of Firm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Annual-Average-Salary-in-Each-State"><span class="nav-number">8.7.</span> <span class="nav-text">Annual Average Salary in Each State</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numbers-of-Years-of-Experience-Required-by-Employers"><span class="nav-number">8.8.</span> <span class="nav-text">Numbers of Years of Experience Required by Employers</span></a></li></ol></li></ol></div>
             
 
           </div>
