@@ -81,14 +81,22 @@
 
 
 
+<meta name="description" content="TensorFlow’s Object Detection API gives access to anyone who wants to quickly create a image/video recognition software. I will be building a coin counter to detect if there is a coin in the image and">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A Coin Counter with TensorFlow API and OpenCV">
 <meta property="og:url" content="http://yoursite.com/2019/11/19/object_detection/index.html">
 <meta property="og:site_name" content="Yifeng&#39;s Notebook">
+<meta property="og:description" content="TensorFlow’s Object Detection API gives access to anyone who wants to quickly create a image/video recognition software. I will be building a coin counter to detect if there is a coin in the image and">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-20T04:52:13.117Z">
+<meta property="og:image" content="https://i.ibb.co/wwgYtX7/35028879540694746.jpg">
+<meta property="og:image" content="https://i.ibb.co/SssJyFt/3768238625917334.jpg">
+<meta property="og:image" content="https://i.ibb.co/7nCXpvX/objectdetection-1.png">
+<meta property="og:image" content="https://i.ibb.co/qCqZQ1c/2019-11-21-111721.jpg">
+<meta property="og:updated_time" content="2019-11-23T01:28:30.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A Coin Counter with TensorFlow API and OpenCV">
+<meta name="twitter:description" content="TensorFlow’s Object Detection API gives access to anyone who wants to quickly create a image/video recognition software. I will be building a coin counter to detect if there is a coin in the image and">
+<meta name="twitter:image" content="https://i.ibb.co/wwgYtX7/35028879540694746.jpg">
 
 
 
@@ -303,7 +311,44 @@
       
 
       
-        
+        <p>TensorFlow’s Object Detection API gives access to anyone who wants to quickly create a image/video recognition software. I will be building a coin counter to detect if there is a coin in the image and calculate the total amount of money simultaneously(see full code on dsadasdasdasdsadasdas). The following pictures show the prototype’s results, and future improvements of this project will be discussed in the end of this article.</p>
+<p><a href="https://i.ibb.co/ZdWCXRb/67876047806213.jpg" target="_blank" rel="noopener">https://i.ibb.co/ZdWCXRb/67876047806213.jpg</a></p>
+<img src="https://i.ibb.co/wwgYtX7/35028879540694746.jpg" alt="avatar" style="zoom: 200%;">
+
+<img src="https://i.ibb.co/SssJyFt/3768238625917334.jpg" alt="avatar" style="zoom: 200%;">
+
+<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>TensorFlow-GPU is quite faster than CPU for the training process, but it only supports NVIDIA GPU, this criterion is not met on my laptop. Therefore I chose TensorFlow-CPU and a lot of time was sacrificed to meet a good result. The newest TensorFlow  CPU version(2.0) has some incompatibilities with the object detection models, after trying different versions, TensorFlow 1.15.0 is the most appropriate version to use with my environment(Python3.7.0, Win10-x64). The diagram below shows the workflow for this project.</p>
+<img src="https://i.ibb.co/7nCXpvX/objectdetection-1.png" alt="avatar" style="zoom: 200%;">
+
+<h1 id="Configuring-the-Environment"><a href="#Configuring-the-Environment" class="headerlink" title="Configuring the Environment"></a>Configuring the Environment</h1><p>Tensorflow can be installed by typing the following code in Command Prompt window under C:\ directory:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --upgrade tensorflow==1.15.0</span><br></pre></td></tr></table></figure>
+
+<p>TensorFlow Object Detection API readme installation instructions can be found on <a href="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md" target="_blank" rel="noopener">https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md</a>, follow this readme to install required dependencies. One thing to note is that it doesn’t show protobuf-compiler installation for windows users, you can find the zip file on <a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank" rel="noopener">https://github.com/protocolbuffers/protobuf/releases</a>. Then clone the TensorFlow models repository(<a href="https://github.com/tensorflow/models" target="_blank" rel="noopener">https://github.com/tensorflow/models</a>) and save it under the same directory with TensorFlow.</p>
+<p>In the directory”models\research\object_detection\protos”, there are a lot files ending in .proto. These files can be transferred into *.py by protobuf-compiler, navigate into models\research and type the following command line(protoc directory must be set in PATH in system variables):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protoc-3.10.1-win64\bin\protoc.exe object_detection/protos/*.proto --python_out=.</span><br></pre></td></tr></table></figure>
+
+<p>After finishing compiling, there will be a corresponding .py file for every .proto file under the protos directory. Before going through next step, add a variable in system variables with the name PYTHONPATH and then add those values below to PYTHONPATH:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\TensorFlow\models</span><br><span class="line"></span><br><span class="line">C:\TensorFlow\models\research</span><br><span class="line"></span><br><span class="line">C:\TensorFlow\models\research\slim</span><br><span class="line"></span><br><span class="line">C:\TensorFlow\models\research\object_detection</span><br><span class="line"></span><br><span class="line">C:\Users\Python\python37</span><br></pre></td></tr></table></figure>
+
+<p>Then add %PYTHONPATH% into PATH variable. Now the environment is prepared appropriately. Use Jupyter Notebook to open the file named object_detection_tutorial.ipynb in “models\research\object_detection”, click on the Jupyter toolbar and select the Run All, you should see two sample images when the program stops.</p>
+<h1 id="Labelling-and-Creating-Dataset"><a href="#Labelling-and-Creating-Dataset" class="headerlink" title="Labelling and Creating Dataset"></a>Labelling and Creating Dataset</h1><p>In order not to confuse the model and save time, the tail side of Canadian $1 and $2 coin was used for this project, and a total of 428 pictures in various backgrounds were taken and compressed into smaller size around 300kb. </p>
+<p><strong>LabelImg</strong> is a easy-to-use graphical image annotation tool, it can be downloaded on <a href="https://tzutalin.github.io/labelImg/" target="_blank" rel="noopener">https://tzutalin.github.io/labelImg/</a>. The user interface is shown below, use Create RecBox at the left side to select coins and label it then click save.</p>
+<img src="https://i.ibb.co/qCqZQ1c/2019-11-21-111721.jpg" alt="avatar" style="zoom: 200%;">
+
+<p>when finishes and a XML file containing coordinate data will be generated for each corresponding JPG file.  the XML file should look like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">-&lt;annotation&gt;</span><br><span class="line">&lt;folder&gt;training_images&lt;/folder&gt;</span><br><span class="line">&lt;filename&gt;IMG_5154.jpg&lt;/filename&gt;</span><br><span class="line">&lt;path&gt;C:\training_images\IMG_5154.jpg&lt;/path&gt;</span><br><span class="line">-&lt;source&gt;</span><br><span class="line">&lt;database&gt;Unknown&lt;/database&gt;</span><br><span class="line">&lt;/source&gt;</span><br><span class="line">-&lt;size&gt;</span><br><span class="line">&lt;width&gt;600&lt;/width&gt;</span><br><span class="line">&lt;height&gt;600&lt;/height&gt;</span><br><span class="line">&lt;depth&gt;3&lt;/depth&gt;</span><br><span class="line">&lt;/size&gt;</span><br><span class="line">&lt;segmented&gt;0&lt;/segmented&gt;</span><br><span class="line"></span><br><span class="line">-&lt;object&gt;</span><br><span class="line">&lt;name&gt;Toonie&lt;/name&gt;</span><br><span class="line">&lt;pose&gt;Unspecified&lt;/pose&gt;</span><br><span class="line">&lt;truncated&gt;0&lt;/truncated&gt;</span><br><span class="line">&lt;difficult&gt;0&lt;/difficult&gt;</span><br><span class="line"></span><br><span class="line">-&lt;bndbox&gt;</span><br><span class="line">&lt;xmin&gt;205&lt;/xmin&gt;</span><br><span class="line">&lt;ymin&gt;156&lt;/ymin&gt;</span><br><span class="line">&lt;xmax&gt;344&lt;/xmax&gt;</span><br><span class="line">&lt;ymax&gt;299&lt;/ymax&gt;</span><br><span class="line"></span><br><span class="line">&lt;/bndbox&gt;</span><br><span class="line">&lt;/object&gt;</span><br><span class="line"></span><br><span class="line">-&lt;object&gt;</span><br><span class="line">&lt;name&gt;Toonie&lt;/name&gt;</span><br><span class="line">&lt;pose&gt;Unspecified&lt;/pose&gt;</span><br><span class="line">&lt;truncated&gt;0&lt;/truncated&gt;</span><br><span class="line">&lt;difficult&gt;0&lt;/difficult&gt;</span><br><span class="line"></span><br><span class="line">-&lt;bndbox&gt;</span><br><span class="line">&lt;xmin&gt;225&lt;/xmin&gt;</span><br><span class="line">&lt;ymin&gt;369&lt;/ymin&gt;</span><br><span class="line">&lt;xmax&gt;365&lt;/xmax&gt;</span><br><span class="line">&lt;ymax&gt;509&lt;/ymax&gt;</span><br><span class="line"></span><br><span class="line">&lt;/bndbox&gt;</span><br><span class="line">&lt;/object&gt;</span><br><span class="line">&lt;/annotation&gt;</span><br></pre></td></tr></table></figure>
+
+<p>From the above code, it is clear that two Toonies are labeled in the bndbox, and the four three-digit numbers represent the coordinates of four corners of the bndbox. After the labelling, create a “training_images” folder and a “test_images” folder, then copy all the pictures and XML files into “training_images” and randomly select and move 10 pictures of loonie and 10 pictures of toonie into “test_images”.</p>
+<p>The next step(use xml_to_csv.py) is generating two CSV files(one for training and one for testing) from XML files. This is primarily performed by <strong>xml.etree.ElementTree</strong>, whcih is a powerful module implementing a efficient API for parsing and creating XML data. The following function uses <strong>glob.glob</strong> to return all paths of XML files and  <strong>xml.etree.ElementTree</strong> to parse them, then save the data into pandas’ dataframe with eight columns, each row represents a coin’s position.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xml_to_csv</span><span class="params">(path)</span>:</span></span><br><span class="line">    xml_list = []</span><br><span class="line">    <span class="keyword">for</span> xml_file <span class="keyword">in</span> glob.glob(path + <span class="string">'/*.xml'</span>):</span><br><span class="line">        tree = ET.parse(xml_file)</span><br><span class="line">        root = tree.getroot()</span><br><span class="line">        <span class="keyword">for</span> member <span class="keyword">in</span> root.findall(<span class="string">'object'</span>):</span><br><span class="line">            value = (root.find(<span class="string">'filename'</span>).text, int(root.find(<span class="string">'size'</span>)[<span class="number">0</span>].text), int(root.find(<span class="string">'size'</span>)[<span class="number">1</span>].text), member[<span class="number">0</span>].text,</span><br><span class="line">                     int(member[<span class="number">4</span>][<span class="number">0</span>].text), int(member[<span class="number">4</span>][<span class="number">1</span>].text), int(member[<span class="number">4</span>][<span class="number">2</span>].text), int(member[<span class="number">4</span>][<span class="number">3</span>].text))</span><br><span class="line">            xml_list.append(value)</span><br><span class="line">    column_name = [<span class="string">'filename'</span>,<span class="string">'width'</span>,<span class="string">'height'</span>,<span class="string">'class'</span>,<span class="string">'xmin'</span>,<span class="string">'ymin'</span>,<span class="string">'xmax'</span>,<span class="string">'ymax'</span>]</span><br><span class="line">    xml_df = pd.DataFrame(xml_list, columns=column_name)</span><br><span class="line">    <span class="keyword">return</span> xml_df</span><br></pre></td></tr></table></figure>
+
+<p>After that, use generate_tfrecords.py to create two tfrecord files. Run the script and check “C:\TensorFlow_Tut_3_Object_Detection_Walk-through-master\training_data”, there should be two files called eval.tfrecord and train.tfrecord. Besides, label_map.pbtxt should be edited based on the object you want to train. For the purposes of this article, the label_map.pbtxt file looks like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">item &#123;</span><br><span class="line">  id: 1</span><br><span class="line">  name: &apos;Toonie&apos;</span><br><span class="line">  display_name: &apos;Toonie&apos;</span><br><span class="line">&#125;</span><br><span class="line">item &#123;</span><br><span class="line">  id: 2</span><br><span class="line">  name: &apos;Loonie&apos;</span><br><span class="line">  display_name: &apos;Loonie&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The final part of this section is to choose a model from the Tensorflow detection model zoo(<a href="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md" target="_blank" rel="noopener">https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md</a>), more than 20 pre-trained models are listed on this link. The <strong>ssd_inception_v2_coco</strong> is usually a good choice for images with different objects, which is the one used in this project(as for dynamic object like webcam or video, <strong>ssd_mobilenet_v1_coco</strong> is the right one to use). Download this model to the repository directory and extract it. </p>
+<p><strong>ssd_inception_v2_coco.config</strong> can be found on <a href="https://github.com/tensorflow/models/blob/master/research/object_detection/samples/configs/ssd_inception_v2_coco.config" target="_blank" rel="noopener">https://github.com/tensorflow/models/blob/master/research/object_detection/samples/configs/ssd_inception_v2_coco.config</a>. Save it into the repository directory and  edit the path in train_input_reader and eval_input_reader to the corresponding path of tfrecord.  So far, the preparing process is completed and ready to train.</p>
+<h1 id="Training-the-Model"><a href="#Training-the-Model" class="headerlink" title="Training the Model"></a>Training the Model</h1><p>In consideration of computing power of ordinary laptops and  time costs, <strong>batch_size: 20</strong> and <strong>num_steps: 18000</strong> is set</p>
+
       
     </div>
     
@@ -387,8 +432,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -430,6 +484,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Configuring-the-Environment"><span class="nav-number">2.</span> <span class="nav-text">Configuring the Environment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Labelling-and-Creating-Dataset"><span class="nav-number">3.</span> <span class="nav-text">Labelling and Creating Dataset</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Training-the-Model"><span class="nav-number">4.</span> <span class="nav-text">Training the Model</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
