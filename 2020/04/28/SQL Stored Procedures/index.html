@@ -81,18 +81,17 @@
 
 
 
+<meta name="description" content="1.1 Creating a Stored Procedure1234567create procedure dbo.spPeople_GetAll    # use alter procedure for altering as begin	set nocount on;    # do not show how many rows are affected	select id, FirstNa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github Emoji">
-<meta property="og:url" content="http://yoursite.com/2019/12/10/emoji/index.html">
+<meta property="og:title" content="SQL Stored Procedures">
+<meta property="og:url" content="http://yoursite.com/2020/04/28/SQL Stored Procedures/index.html">
 <meta property="og:site_name" content="Yifeng&#39;s Notebook">
+<meta property="og:description" content="1.1 Creating a Stored Procedure1234567create procedure dbo.spPeople_GetAll    # use alter procedure for altering as begin	set nocount on;    # do not show how many rows are affected	select id, FirstNa">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.ibb.co/48yvW8b/1.png">
-<meta property="og:image" content="https://i.ibb.co/yy9pD5d/2.png">
-<meta property="og:image" content="https://i.ibb.co/tcsSyLx/3.png">
-<meta property="og:updated_time" content="2019-12-10T09:14:40.588Z">
+<meta property="og:updated_time" content="2020-04-29T03:53:49.719Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Github Emoji">
-<meta name="twitter:image" content="https://i.ibb.co/48yvW8b/1.png">
+<meta name="twitter:title" content="SQL Stored Procedures">
+<meta name="twitter:description" content="1.1 Creating a Stored Procedure1234567create procedure dbo.spPeople_GetAll    # use alter procedure for altering as begin	set nocount on;    # do not show how many rows are affected	select id, FirstNa">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/10/emoji/">
+  <link rel="canonical" href="http://yoursite.com/2020/04/28/SQL Stored Procedures/">
 
 
 
 
 
-  <title>Github Emoji | Yifeng's Notebook</title>
+  <title>SQL Stored Procedures | Yifeng's Notebook</title>
   
 
 
@@ -235,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/emoji/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/28/SQL Stored Procedures/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yifeng Li">
@@ -252,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Github Emoji</h1>
+          <h1 class="post-title" itemprop="name headline">SQL Stored Procedures</h1>
         
 
         <div class="post-meta">
@@ -264,8 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-10T04:06:19-05:00">
-                2019-12-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-28T22:59:37-04:00">
+                2020-04-28
               </time>
             
 
@@ -307,13 +306,21 @@
       
 
       
-        <img src="https://i.ibb.co/48yvW8b/1.png" alt="avatar" style="zoom: 200%;">
+        <h2 id="1-1-Creating-a-Stored-Procedure"><a href="#1-1-Creating-a-Stored-Procedure" class="headerlink" title="1.1 Creating a Stored Procedure"></a>1.1 Creating a Stored Procedure</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create procedure dbo.spPeople_GetAll    # use alter procedure for altering </span><br><span class="line">as </span><br><span class="line">begin</span><br><span class="line">	set nocount on;    # do not show how many rows are affected</span><br><span class="line">	select id, FirstName, LastName</span><br><span class="line">	from dbo.People;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-Calling-a-Stored-Procedure"><a href="#1-2-Calling-a-Stored-Procedure" class="headerlink" title="1.2 Calling a Stored Procedure"></a>1.2 Calling a Stored Procedure</h2><p>Direct call (e.g. select id, FirstName, LastName from dbo.People) has to be compiled then run, but a stored procedure is always compiled. It will be more efficient to call a stored procedure.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec dbo.spPeople_GetAll</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-1-Creating-a-Stored-Procedure-to-Sort-by-Last-Name"><a href="#2-1-Creating-a-Stored-Procedure-to-Sort-by-Last-Name" class="headerlink" title="2.1 Creating a Stored Procedure to Sort by Last Name"></a>2.1 Creating a Stored Procedure to Sort by Last Name</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create procedure dbo.spPeople_GetByLastName</span><br><span class="line">	@LastName nvarchar(50)</span><br><span class="line">as </span><br><span class="line">begin</span><br><span class="line">	select id, FirstName, LastName</span><br><span class="line">	from dbo.People</span><br><span class="line">	where LastName = @LastName</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-Calling-a-Stored-Procedure-to-Get-People-with-Same-Last-Name"><a href="#2-2-Calling-a-Stored-Procedure-to-Get-People-with-Same-Last-Name" class="headerlink" title="2.2 Calling a Stored Procedure to Get People with Same Last Name"></a>2.2 Calling a Stored Procedure to Get People with Same Last Name</h2><p>Last name was passed in as a variable</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec dbo.spPeople_GetByLastName &apos;Corey&apos;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-1-Creating-a-Stored-Procedure-to-Sort-by-Last-Name-and-First-Name"><a href="#3-1-Creating-a-Stored-Procedure-to-Sort-by-Last-Name-and-First-Name" class="headerlink" title="3.1 Creating a Stored Procedure to Sort by Last Name and First Name"></a>3.1 Creating a Stored Procedure to Sort by Last Name and First Name</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create procedure dbo.spPeople_GetByLastName</span><br><span class="line">	@LastName nvarchar(50),</span><br><span class="line">	@FirstName nvarchar(50)    # add a default value: @FirstName nvarchar(50) = &apos;&apos;</span><br><span class="line">as </span><br><span class="line">begin</span><br><span class="line">	select id, FirstName, LastName</span><br><span class="line">	from dbo.People</span><br><span class="line">	where LastName = @LastName and FirstName = @FirstName;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-Calling-a-Stored-Procedure-to-Get-People-with-Same-Last-Name-and-First-Name"><a href="#3-2-Calling-a-Stored-Procedure-to-Get-People-with-Same-Last-Name-and-First-Name" class="headerlink" title="3.2 Calling a Stored Procedure to Get People with Same Last Name and First Name"></a>3.2 Calling a Stored Procedure to Get People with Same Last Name and First Name</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec dbo.spPeople_GetByLastName &apos;Corey&apos;,&apos;Tim&apos;</span><br></pre></td></tr></table></figure>
 
 
-
-<img src="https://i.ibb.co/yy9pD5d/2.png" alt="avatar" style="zoom: 200%;">
-
-<img src="https://i.ibb.co/tcsSyLx/3.png" alt="avatar" style="zoom: 200%;">
       
     </div>
     
@@ -337,8 +344,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/19/object_detection/" rel="next" title="A Coin Counter with TensorFlow API and OpenCV">
-                <i class="fa fa-chevron-left"></i> A Coin Counter with TensorFlow API and OpenCV
+              <a href="/2019/12/10/emoji/" rel="next" title="Github Emoji">
+                <i class="fa fa-chevron-left"></i> Github Emoji
               </a>
             
           </div>
@@ -346,10 +353,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/28/SQL Stored Procedures/" rel="prev" title="SQL Stored Procedures">
-                SQL Stored Procedures <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -401,8 +404,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -444,6 +456,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Creating-a-Stored-Procedure"><span class="nav-number">1.</span> <span class="nav-text">1.1 Creating a Stored Procedure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Calling-a-Stored-Procedure"><span class="nav-number">2.</span> <span class="nav-text">1.2 Calling a Stored Procedure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Creating-a-Stored-Procedure-to-Sort-by-Last-Name"><span class="nav-number">3.</span> <span class="nav-text">2.1 Creating a Stored Procedure to Sort by Last Name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Calling-a-Stored-Procedure-to-Get-People-with-Same-Last-Name"><span class="nav-number">4.</span> <span class="nav-text">2.2 Calling a Stored Procedure to Get People with Same Last Name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Creating-a-Stored-Procedure-to-Sort-by-Last-Name-and-First-Name"><span class="nav-number">5.</span> <span class="nav-text">3.1 Creating a Stored Procedure to Sort by Last Name and First Name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Calling-a-Stored-Procedure-to-Get-People-with-Same-Last-Name-and-First-Name"><span class="nav-number">6.</span> <span class="nav-text">3.2 Calling a Stored Procedure to Get People with Same Last Name and First Name</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
